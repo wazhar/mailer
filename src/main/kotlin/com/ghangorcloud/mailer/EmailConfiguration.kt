@@ -14,17 +14,19 @@ class EmailConfig(propertiesPath: String) {
     val smtpHost: String = properties.getProperty("smtp.host")
     val smtpPort: Int = properties.getProperty("smtp.port").toInt()
 
-    val smtpAuthEnabled: Boolean = properties.getProperty("smtp.auth.enabled", "false").toBoolean()
+    val smtpAuthEnabled: Boolean = properties.getProperty("smtp.authEnabled", "false").toBoolean()
     val smtpUsername: String? = properties.getProperty("smtp.username")
     val smtpPassword: String? = properties.getProperty("smtp.password")
-    val smtpStartTlsEnabled: Boolean = properties.getProperty("smtp.starttls.enabled", "false").toBoolean()
+    val smtpStartTlsEnabled: Boolean = properties.getProperty("smtp.starttlsEnabled", "false").toBoolean()
     val smtpFromAddress: String = properties.getProperty("mail.from", "no-reply@example.com")
 
     val connectionReuse: Boolean = properties.getProperty("smtp.connectionReuse", "false").toBoolean()
+    val smtpConnectionTimeoutMillis: Int = properties.getProperty("smtp.connectionTimeoutMillis", "10000").toInt()
+    val smtpReadTimeoutMillis: Int = properties.getProperty("smtp.readTimeoutMillis", "10000").toInt()
+
 
     val workerThreads: Int = properties.getProperty("mail.workerThreads", "1").toInt()
-    val totalEmails: Int = properties.getProperty("mail.totalEmails", "1").toInt()
-    val mailsPerThread: Int = properties.getProperty("smtp.mailsPerThread", "1").toInt()
+    val msgPerThread: Int = properties.getProperty("mail.msgPerThread", "1").toInt()
 
     val contentType: String = properties.getProperty("mail.contentType", "text/plain")
     val attachmentEnabled: Boolean = properties.getProperty("mail.attachment.enabled", "false").toBoolean()
